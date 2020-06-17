@@ -19,9 +19,36 @@ class Data:
         # print(run_list)
         return run_list
 
+    def get_case_list(self):
+        """
+        获取全部测试用例
+        :return:
+        """
+        run_list = [line for line in self.reader.data()]
+        # print(run_list)
+        return run_list
+
+    def get_case_pre(self, pre):
+        """
+        根据前置条件：从全部测试用例取到对应前置的测试用例
+        :param pre:
+        :return:
+        """
+        run_list = self.get_case_list()
+        for line in run_list:
+            if pre in dict(line).values():
+                return line
+        return None
+
 
 if __name__ == '__main__':
-    Data("../data/testdata.xlsx", "美多商城接口测试").get_run_data()
+    # Data("../data/testdata.xlsx", "美多商城接口测试").get_run_data()
+    Data("../data/testdata.xlsx", "美多商城接口测试").get_case_list()
+
+
+
+
+
 
 """
 # 1、使用excel工具类，获取结果list
